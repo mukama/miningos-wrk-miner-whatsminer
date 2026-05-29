@@ -1,8 +1,8 @@
 'use strict'
 
-const { getDefaultConf, testExecutor } = require('miningos-tpl-wrk-miner/tests/miner.test')
+const { getDefaultConf, testExecutor } = require('@tetherto/miningos-tpl-wrk-miner/tests/miner.test')
 const Miner = require('../workers/lib/miner')
-const TcpFacility = require('svc-facs-tcp')
+const TcpFacility = require('@tetherto/svc-facs-tcp')
 const srv = require('../mock/server')
 const crypto = require('crypto')
 
@@ -51,11 +51,10 @@ const execute = async () => {
     }
     // Give time for connections to close
     await new Promise(resolve => setTimeout(resolve, 2000))
-    process.exit(0)
   }
 }
 
 execute().catch(err => {
   console.error(err)
-  process.exit(1)
+  process.exitCode = 1
 })
